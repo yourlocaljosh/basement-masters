@@ -1,0 +1,10 @@
+Guide on how to set this bot up on local device
+
+1. Download Python requirements
+    - Set up virtual environment, install from requirements.txt (pip install -r requirements.txt)
+2. Set up player data files
+    - data.json & double_data.json
+3. Launch bot.py and connect to Discord
+    - You'll have to find your own guide on how to setup the Discord bot API
+        - Don't share your API key
+4. Bot is ready to be used!
