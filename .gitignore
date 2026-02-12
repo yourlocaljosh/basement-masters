@@ -8,3 +8,5 @@ venv
 # Player Data
 data.json
 doubles_data.json
+
+stylecheck.txt
