@@ -1,7 +1,8 @@
 # DEVELOPED BY JOSHSW / KLISM
 # WE LOVE TABLE TENNIS!
 
-# Originally designed for Ping Pong Masters Tour, a local table tennis league in Novi, MI
+# Originally designed for Ping Pong Masters Tour
+# a local table tennis league in Novi, MI
 
 import os
 import discord
@@ -24,7 +25,7 @@ load_dotenv()
 botToken = os.getenv("DISCORD_TOKEN")
 ALLOWED_ROLE_IDS = os.getenv("ROLE_ID")
 DEV_GUILD_ID = os.getenv("SERVER_ID")
-ELO_RANKS = os.getenv("RANKS","0")=="1"
+ELO_RANKS = os.getenv("RANKS", "0") == "1"
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -33,16 +34,18 @@ intents.members = True
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
+
 @client.event
 async def on_message(message: discord.Message):
     if message.author.bot or message.guild is None:
         return
-    if client.user.mentioned_in(message) and message.content.strip() == f"<@{client.user.id}> sync":
+    if (client.user.mentioned_in(message) and
+    message.content.strip() == f"<@{client.user.id}> sync"):
         try:
             synced = await tree.sync()
-            await message.channel.send(f"✅ Successfully synced {len(synced)} command(s).")
+            await message.channel.send(f"Synced {len(synced)} command(s).")
         except Exception as e:
-            await message.channel.send(f"⚠️ Sync failed: {e}")
+            await message.channel.send(f"Sync failed: {e}")
 
 from discord.utils import get
 
