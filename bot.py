@@ -68,22 +68,7 @@ async def stats(interaction: discord.Interaction, user: discord.Member = None):
     elo = user_stats['elo']
     peak = user_stats['peak_elo']
 
-    badge_part = ""
-    badge_emoji = ""
-    badge_name = ""
-    if ELO_RANKS:
-        if   elo >= 300: badge_emoji, badge_name = custom("goats"),    "GOATs"
-        elif elo >= 250: badge_emoji, badge_name = custom("master"),   "Master"
-        elif elo >= 200: badge_emoji, badge_name = custom("diamond"),  "Diamond"
-        elif elo >= 150: badge_emoji, badge_name = custom("platinum"), "Platinum"
-        elif elo >= 100: badge_emoji, badge_name = custom("gold"),     "Gold"
-        elif elo >=  80: badge_emoji, badge_name = custom("silver"),   "Silver"
-        elif elo >=  60: badge_emoji, badge_name = custom("bronze"),   "Bronze"
-        elif elo >=  40: badge_emoji, badge_name = custom("iron"),     "Iron"
-        else:            badge_emoji, badge_name = custom("beginner"), "Beginner"
-        badge_part = f" • {badge_emoji} {badge_name}".strip()
-
-    title = f"{user.display_name} — #{rank_number}{badge_part}"
+    title = f"{user.display_name} — #{rank_number}"
     embed = discord.Embed(title=title)
 
     embed.add_field(name="ELO", value=str(elo), inline=True)
@@ -417,7 +402,7 @@ async def modifyelo(
     entry.setdefault('peak_elo', entry['elo'])
     if entry['elo'] > entry['peak_elo']:
         entry['peak_elo'] = entry['elo']
-        
+
     save_data(data)
 
     await interaction.response.send_message(
