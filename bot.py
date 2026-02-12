@@ -416,7 +416,8 @@ async def modifyelo(
     
     entry.setdefault('peak_elo', entry['elo'])
     if entry['elo'] > entry['peak_elo']:
-    	entry['peak_elo'] = entry['elo']
+        entry['peak_elo'] = entry['elo']
+        
     save_data(data)
 
     await interaction.response.send_message(
